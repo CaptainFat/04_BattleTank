@@ -27,3 +27,18 @@ ATank* ATankPlayerController::GetControlledTank() const
 }
 
 
+void ATankPlayerController::Tick(float delta) 
+{
+	Super::Tick(delta);
+}
+
+// Start the tank moving the barrel so that a shot would hit where
+//The crosshair intersects the world
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
+	// Get world location if linetrace through crosshari
+	// If it hits the landscape 
+		// Tell controlled tank to aim at this point
+}
