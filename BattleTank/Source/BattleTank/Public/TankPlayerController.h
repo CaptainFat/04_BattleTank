@@ -21,10 +21,14 @@ public:
 
 	virtual void Tick(float delta) override;
 
-	void AimTowardsCrosshair();
+	
 private:
+	void AimTowardsCrosshair();
 	ATank * GetControlledTank() const;
-
+	UPROPERTY(EditAnywhere)
+		float CrossHairXLocation = 0.5f;
+	UPROPERTY(EditAnywhere)
+		float CrossHairYLocation = 0.3333333f;
 	
 	// Return an OUT parameter, true if hit landscape
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
