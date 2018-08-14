@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "Runtime/Engine/Classes/Engine/World.h"
 #include "BattleTank.h"
 
 void ATankPlayerController::BeginPlay()
@@ -27,9 +28,11 @@ ATank* ATankPlayerController::GetControlledTank() const
 }
 
 
-void ATankPlayerController::Tick(float delta) 
+void ATankPlayerController::Tick(float delta)
 {
 	Super::Tick(delta);
+
+	AimTowardsCrosshair();
 }
 
 // Start the tank moving the barrel so that a shot would hit where
@@ -37,8 +40,23 @@ void ATankPlayerController::Tick(float delta)
 void ATankPlayerController::AimTowardsCrosshair()
 {
 	if (!GetControlledTank()) { return; }
-
-	// Get world location if linetrace through crosshari
-	// If it hits the landscape 
+	FVector HitLocation; // Out Parameter
+	if (GetSightRayHitLocation(HitLocation)) // Will linetrace 
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+		// If it hits the landscape 
 		// Tell controlled tank to aim at this point
+	}
+
 }
+// Get world location of linetrace through crosshair, ture if hits landscape
+bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) const
+{
+	OutHitLocation = FVector(1.0);
+	return true;
+	// Determine distance of linetrace to be until something hit
+	// Find position of the hit object
+}
+
+
+

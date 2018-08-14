@@ -21,9 +21,11 @@ public:
 
 	virtual void Tick(float delta) override;
 
+	void AimTowardsCrosshair();
 private:
 	ATank * GetControlledTank() const;
 
-	void AimTowardsCrosshair();
-
+	
+	// Return an OUT parameter, true if hit landscape
+	bool GetSightRayHitLocation(FVector& OutHitLocation) const;
 };
