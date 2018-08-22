@@ -20,9 +20,6 @@ public:
 
 	
 private:
-	ATank* GetAIControlledTank() const;
-
-	ATank* GetPlayerTank() const;
 
 	virtual void Tick(float DetlaTime) override;
 
