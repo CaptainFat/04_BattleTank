@@ -30,7 +30,7 @@ public:
 	void SetTurretReference(UTankTurret* TurretToSet);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Fire();
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 
@@ -43,13 +43,15 @@ private:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 		float LaunchSpeed = 100000.f; // TODO Find Sensible Default
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+		float ReloadTimeInSeconds = 3.f;
+
 	// Sets default values for this pawn's properties
 	ATank();
 
 	UTankBarrel* Barrel = nullptr; // Local Barrel Reference for spawning a projectile 
 
-	float ReloadTimeInSeconds = 3.f;
 	double LastFireTime = 0;
 };
