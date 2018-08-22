@@ -32,6 +32,7 @@ void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return; }
+	if (!Turret) { return; }
 
 	FVector OutLaunchVelocity(0.f,0.f,0.f);
 	FVector StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
@@ -45,12 +46,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		MoveBarrelTowards(AimDirection);
 		MoveTurretTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: Aim Solution Found"), Time);
+	
 	}
 	else
 	{
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f: No Aim Solution Found"), Time);
 	}
 }
 
@@ -68,7 +68,6 @@ void UTankAimingComponent::MoveTurretTowards(FVector AimDirection)
 	// Work-out different between current barrel rotation and aim driection
 	auto TurretRotation = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
-	UE_LOG(LogTemp, Warning, TEXT(" The Rotation Required to Hit Point: %s"), *AimAsRotator.ToString());
 	auto DeltaRotator = AimAsRotator - TurretRotation;
 	Turret->TurretSpin(DeltaRotator.Yaw);
 }
