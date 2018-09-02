@@ -22,7 +22,10 @@ void ATankAIController::Tick(float DeltaTime)
 	auto PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	if (PlayerTank) 
 	{
+		MoveToActor(PlayerTank, AcceptanceRadius); // TODO check radius is in centimeters
 		AITank->AimAt(PlayerTank->GetActorLocation());
 		AITank->Fire();
 	}
+
+
 }

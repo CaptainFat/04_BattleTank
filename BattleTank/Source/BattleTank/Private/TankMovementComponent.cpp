@@ -34,3 +34,13 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	// TODO Prevent Double Speed 
 
 }
+
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardInention = MoveVelocity.GetSafeNormal();
+
+	auto AIMoveAngle = FVector::DotProduct(TankForward,AIForwardInention);
+	IntendMoveForward(AIMoveAngle);
+	//UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString);
+}
