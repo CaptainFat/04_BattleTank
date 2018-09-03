@@ -21,10 +21,14 @@ public:
 
 	virtual void Tick(float delta) override;
 
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	ATank * GetControlledTank() const;
 	
 private:
 	void AimTowardsCrosshair();
-	ATank * GetControlledTank() const;
+
+
 	UPROPERTY(EditAnywhere)
 		float CrossHairXLocation = 0.5f;
 	UPROPERTY(EditAnywhere)
