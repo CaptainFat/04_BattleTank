@@ -17,7 +17,7 @@ class BATTLETANK_API UTankTurret : public UStaticMeshComponent
 public:
 	void TurretSpin(float TurningSpeed);
 
-	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 		float MaxDegreesPerSecond = 15.f;
 
 private:
